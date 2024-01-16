@@ -1,0 +1,68 @@
+version: "3.9"
+
+services:
+  #redis:
+  #  image: redis:6.2.6
+  #  ports:
+  #    - "6379:6379"
+  #  # volumes:
+  #  #   - ./.docker_volumes/redis:/data
+  #  environment:
+  #    - ALLOW_EMPTY_PASSWORD=yes
+  #  command: redis-server
+  #  healthcheck:
+  #    test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+  #    # test: ["CMD", "redis-cli", "ping"]
+  #    interval: 1s
+  #    timeout: 30s
+  #    retries: 30
+
+  postgresql:
+    image: postgres
+    platform: linux/amd64
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgresqlPass
+      POSTGRES_DB: ChatNewYear
+    # command: --init-file /data/application/init.sql
+    volumes:
+      - ./.docker_volumes/postgresql/data:/var/lib/postgresql/data
+      # - ./init.sql:/data/application/init.sql
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+      # (HOST:CONTAINER)
+    healthcheck:
+      # test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test:
+        ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 200s
+      retries: 5
+      start_period: 40s
+    container_name: postgresql-con
+
+  #rabbitmq:
+  #  image: rabbitmq:3.11.3-management
+  #  ports:
+  #    - 5672:5672
+  #    - 15672:15672
+  #  healthcheck:
+  #    test: rabbitmq-diagnostics -q ping
+  #    interval: 30s
+  #    timeout: 30s
+  #    retries: 3
+
+  admin-api:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    ports:
+      - 80:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerCompose
+    volumes:
+    - ./Infrastructure:/src/Infrastructure
+    - ./Core:/src/Core
+    - ./UseCases:/src/UseCases
+    - ./ChatNewYear:/src/ChatNewYear
+    working_dir: /src
+    command: bash -c "ls; cd ChatNewYear/bin/Release/net8.0/; dotnet ChatNewYear.dll"
