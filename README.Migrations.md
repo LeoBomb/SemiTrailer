@@ -8,3 +8,5 @@ dotnet ef database update --startup-project ..\SemiTrailer\ --project ./Infrastr
 
 
 dotnet ef migrations add init --project ./TenantDb.csproj
+
+dotnet ef database update

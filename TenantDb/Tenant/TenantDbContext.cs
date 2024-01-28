@@ -16,6 +16,11 @@ namespace Infrastructure.Data
     public class TenantDbContext : DbContext
     {
         private readonly TenantContext _tenantContext;
+
+        public TenantDbContext(TenantContext tenantContext)
+        {
+            _tenantContext = tenantContext;
+        }
         public TenantDbContext(DbContextOptions<TenantDbContext> options, TenantContext tenantContext) : base(options)
         {
             _tenantContext = tenantContext;

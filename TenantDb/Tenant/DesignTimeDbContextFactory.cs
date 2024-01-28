@@ -12,7 +12,9 @@ namespace TenantDb.Tenant
     {
         public TenantDbContext CreateDbContext(string[] args)
         {
-            throw new NotImplementedException();
+            return new TenantDbContext(new Core.Model.TenantContext { Tenant = new Core.Model.TenantEntity { ConnectionString =
+                "Server=127.0.0.1;Port=5432;Database=Tenant_8;User Id=postgres;Password=postgresqlPass;Minimum Pool Size=5;Maximum Pool Size=50"
+            } });
         }
     }
 }
