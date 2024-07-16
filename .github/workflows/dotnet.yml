@@ -15,8 +15,8 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - name: Chown user
-      run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+    - name: Setup permissions
+      run: sudo mkdir -p /usr/share/ && sudo chown $USER:$USER /usr/share/
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
