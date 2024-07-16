@@ -29,4 +29,4 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Start
-      run: dotnet run
+      run: ls; cd SemiTrailer ;dotnet run
