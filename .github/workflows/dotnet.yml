@@ -18,7 +18,7 @@ jobs:
     - name: Setup permissions
       run: sudo mkdir -p /usr/share/ && sudo chown $USER:$USER /usr/share/
     - name: Setup restore permissions
-      run: sudo chown $USER:$USER /home/gitrunner/SemiTrailer
+      run: sudo chown -R $USER:$USER /home/gitrunner/SemiTrailer
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
