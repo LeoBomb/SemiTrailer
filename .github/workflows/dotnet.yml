@@ -33,4 +33,4 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Start
-      run: ;sudo docker-compose -f docker-compose.api.yml stop && sudo docker-compose -f docker-compose.api.yml rm -f && sudo docker-compose -f docker-compose.api.yml up --build -d
+      run: sudo docker-compose -f docker-compose.api.yml stop && sudo docker-compose -f docker-compose.api.yml rm -f && sudo docker-compose -f docker-compose.api.yml up --build -d
