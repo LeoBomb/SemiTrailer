@@ -71,6 +71,16 @@ namespace Infrastructure.SemiTrailer.Queries
             await _semiTrailerDbContext.SaveChangesAsync();
             return entity.Id;
         }
+        public async Task ResetPassword(int userId,string newPassword)
+        {
+            var user = await _semiTrailerDbContext.User.FirstOrDefaultAsync();
+            if(user == null)
+            {
+                throw new Exception("User is not found");
+            }
+            user.Password = newPassword;
+            await _semiTrailerDbContext.SaveChangesAsync();
+        }
 
         public async Task CreateTenantDb(string connectionString)
         {

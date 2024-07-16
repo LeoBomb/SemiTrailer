@@ -27,7 +27,7 @@ namespace SemiTrailer
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICryptService, CryptService>();
             services.AddScoped<IAuthService, AuthService>(); 
-
+            
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

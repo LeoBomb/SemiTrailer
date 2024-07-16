@@ -15,5 +15,6 @@ namespace UseCases.RepositoryInterface
         Task<int> CreateUser(CreateUserReq createUserReq);
         Task CreateTenantDb(string connectionString);
         Task<UserDto> GetUserById(int userId);
+        Task ResetPassword(int userId,string newPassword);
     }
 }

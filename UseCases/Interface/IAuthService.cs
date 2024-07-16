@@ -19,5 +19,6 @@ namespace UseCases.Interface
         /// <param name="userId"></param>
         /// <returns></returns>
         Task CreateTenantDb(int userId);
+        Task ResetPassword(int userId ,string newPassword);
     }
 }

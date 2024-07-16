@@ -57,7 +57,8 @@ namespace SemiTrailer.Controllers
         [HttpGet("all")]
         public async Task<List<UserDto>> GetList()
         {
-            return await _authService.GetList();
+            var data = await _authService.GetList();
+            return data;
         }
     }
 }

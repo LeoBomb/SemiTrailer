@@ -71,5 +71,10 @@ namespace UseCases.User
             var userDtos = await _userRepository.GetUserList();
             return userDtos;
         }
+        public async Task ResetPassword(int userId ,string newPassword)
+        {
+            var hash = _cryptService.HashNewPassword(newPassword);
+            await _userRepository.ResetPassword(userId,hash);
+        }
     }
 }
