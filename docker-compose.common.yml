@@ -64,5 +64,6 @@ services:
     - ./Core:/src/Core
     - ./UseCases:/src/UseCases
     - ./SemiTrailer:/src/SemiTrailer
+    - ./TenantDb:/src/TenantDb
     working_dir: /src
     command: bash -c "ls; cd SemiTrailer; dotnet build;dotnet publish ; echo ---------------;ls;cd bin/Release/net8.0/; dotnet SemiTrailer.dll"
