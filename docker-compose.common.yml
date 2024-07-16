@@ -63,6 +63,6 @@ services:
     - ./Infrastructure:/src/Infrastructure
     - ./Core:/src/Core
     - ./UseCases:/src/UseCases
-    - ./ChatNewYear:/src/ChatNewYear
+    - ./SemiTrailer:/src/SemiTrailer
     working_dir: /src
-    command: bash -c "ls; cd ChatNewYear/bin/Release/net8.0/; dotnet ChatNewYear.dll"
+    command: bash -c "ls; cd SemiTrailer; dotnet build;dotnet publish ; echo ---------------;ls;cd bin/Release/net8.0/; dotnet SemiTrailer.dll"
